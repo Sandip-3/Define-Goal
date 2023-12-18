@@ -1,6 +1,9 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
 const { errorHandler } = require("./middleware/errorMiddleware");
+const connectDB = require('./config/connectDB')
+
+connectDB();
 
 const app = express();
 
@@ -14,3 +17,5 @@ app.use(errorHandler);
 const PORT = 6000;
 
 app.listen(PORT, () => console.log(`App running in Port ${PORT}`));
+
+
