@@ -3,9 +3,14 @@ const mongoose = require("mongoose");
 
 const goalSchema = mongoose.Schema(
   {
+    user : {
+      type : mongoose.Schema.Types.ObjectId,
+      required : true,
+      ref : 'User'
+    },
     text: {
       type: String,
-      require: [true, "Please Add a Title to Goal"],
+      required: [true, "Please Add a Title to Goal"],
     },
   },
   { timestamps: true }
