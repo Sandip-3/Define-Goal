@@ -4,9 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node Backend/server.js",
+    "start": "node server.js",
     "server": "nodemon Backend/server.js",
-    "client": "npm start --prefix frontend"
+    "client": "npm start --prefix frontend",
+    "dev" : "concurrently \"npm run server \" \"npm run client \" "
   },
   "author": "Sandy",
   "license": "MIT",
@@ -18,5 +19,8 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.0.3",
     "nodemon": "^3.0.2"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }

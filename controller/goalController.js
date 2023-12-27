@@ -4,7 +4,7 @@ const User = require("../model/userModel");
 
 const getGoals = asyncHanlder(async (req, res) => {
   const goal = await Goal.find({ user: req.user.id });
-  res.status(200).json({ goal });
+  res.status(200).json(goal);
 });
 
 const postGoals = asyncHanlder(async (req, res) => {
@@ -44,7 +44,7 @@ const updateGoals = asyncHanlder(async (req, res) => {
 });
 
 const deleteGoals = asyncHanlder(async (req, res) => {
-  const goal = await Goal.findByIdAndDelete(req.params.id);
+  const goal = await Goal.findById(req.params.id);
   if (!goal) {
     res.status(400);
     throw new Error("Goal not Found");
@@ -60,7 +60,10 @@ const deleteGoals = asyncHanlder(async (req, res) => {
     throw new Error("Not Authorized User");
   }
 
-  res.status(200).json({ message: `Deleted ID ${req.params.id}` });
+  await goal.remove();
+  const goals = await Goal.findByIdAndDelete(req.params.id);
+
+  res.status(200).json({ id: req.params.id });
 });
 
 module.exports = {

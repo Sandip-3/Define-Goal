@@ -38,6 +38,7 @@ const loginUser = asyncHandler(async (req, res) => {
       _id: user.id,
       name: user.name,
       email: user.email,
+      password: user.password,
       token: generateToken(user.id),
     });
   } else {
@@ -47,7 +48,7 @@ const loginUser = asyncHandler(async (req, res) => {
 });
 
 const getUser = asyncHandler(async (req, res) => {
-  res.status(201).json({ message: "From Me Controller" });
+  res.status(201).json(req.user);
 });
 
 const generateToken = (id) => {
